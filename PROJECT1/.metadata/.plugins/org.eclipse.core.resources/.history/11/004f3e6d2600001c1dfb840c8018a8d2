@@ -1,0 +1,5 @@
+package com.telstra.config;
+
+public class MySecurityConfig {
+
+}

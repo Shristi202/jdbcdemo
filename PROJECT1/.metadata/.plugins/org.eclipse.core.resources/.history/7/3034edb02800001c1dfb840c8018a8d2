@@ -1,0 +1,14 @@
+package com.telstra.utility;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JWTUtility {
+
+	public String generateToken(UserDetails userDetails) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

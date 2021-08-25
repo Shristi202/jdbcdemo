@@ -1,0 +1,35 @@
+package com.telstra;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class KafkaController {
+	// Topic is created
+	// Ensure that ZooKeeper, Kafka server is running
+	private static final String KAFKA_TOPIC = "TelstraTopic";
+	@Autowired
+	KafkaTemplate<String,String> kafkaTemplate;
+	
+	@PostMapping("/publish")
+	public String publishToKafka(@RequestParam String data)
+	{
+		try{
+		kafkaTemplate.send("KAFKA_TOPIC",data);
+		}catch (Exception e) {
+		  return "Can't Publish";
+		}
+		return "The data is "+data+" is succesfully published to kafka";
+	}
+	
+	//Listener / Consumer
+	@KafkaListener(id="hey",topics=KAFKA_TOPIC)
+	public void listenToTopicData(String data) {
+		System.out.println(data);
+	}
+
+}

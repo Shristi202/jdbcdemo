@@ -1,0 +1,16 @@
+package com.telstra.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+// basically api's
+@RestController
+public class Home {
+	
+	@RequestMapping("/")
+	public String welcome() {
+		String text = "This is a private page";
+		return text;
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.telstra;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class KafkaController {
+	
+	@Autowired
+	KafkaTemplate<String,String> kafkaTemplate;
+	
+	@PostMapping("/publish")
+	public String publishToKafka(@RequestParam String data)
+	{
+		return "The data is "+data+"is succesfully published to kafka";
+	}
+
+}
